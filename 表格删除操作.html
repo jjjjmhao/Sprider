@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>购物车</title>
+	<style type="text/css">
+		/*设置table位置*/
+		table{
+			width: 500px;
+			margin: 100px auto;
+			border-collapse: collapse;
+			text-align:center;
+		}
+		/*设置边框样式*/
+		td,th{
+			border:1px solid #333;
+		}
+		/*设置表头样式*/
+		thead,tr{
+			height: 40px;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<table cellspacing="0">
+		<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>数量</th>
+				<th>价格</th>
+				<th>修改</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			
+		</tbody>
+	</table>
+	<script type="text/javascript">
+		var datas = [{name:'真皮休闲鞋',num:'12',price:'568.50'},
+		             {name:'抗疲劳项圈',num:'2',price:'49.0'},
+		             {name:'笔记本电脑',num:'2',price:'4449.0'},
+		             {name:'漫画书',num:'8',price:'80.0'},]
+		/*创建行*/
+		var tbody = document.querySelector('tbody');
+		
+		for(var i=0;i<datas.length;i++){
+			/*创建tr行*/
+			var tr = document.createElement('tr');
+			tbody.appendChild(tr);
+			/*行内创建单元格*/
+			for(var k in datas[i]){
+				var td = document.createElement('td');
+				td.innerHTML = datas[i][k];
+				tr.appendChild(td);
+			}
+			
+			var tr = document.createElement('td');
+			tr.innerHTML = '<a href="javascript:;">删除</a>';
+			tr.appendChild(td);
+        }
+        /*添加商品*/
+        var tx = document.createElement('tr');
+        tx.innerHTML = '<a color=red href="javascript:;">增加商品</a>';
+        tbody.appendChild(tx);
+		/*删除操作*/
+		var as = document.querySelectorAll('a');
+		for(var i=0;i<as.length;i++){
+			as[i].onclick = function(){
+				/*删除当前节点的爷爷节点*/
+				tbody.removeChild(this.parentNode.parentNode);
+			}
+
+		}
+				
+	</script>
+</body>
+</html>
